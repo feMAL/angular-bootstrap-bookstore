@@ -1,0 +1,29 @@
+<div class="row justify-content-sm-center" *ngIf="validSession()">
+    <div class="col-2 d-none d-sm-none d-md-block">
+        <div class="m-md-2 sidebar-container">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['./dashboard']" id="v-pills-item-tab" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['./books']" id="v-pills-messages-tab" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false">Libros</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['./autors']" id="v-pills-messages-tab" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false">Autores</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['./categories']" id="v-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false">Catergorias</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['./editorials']" id="v-pills-settings-tab" data-toggle="pill" role="tab" aria-controls="v-pills-settings" aria-selected="false">Editoriales</a>
+              <a class="nav-link" routerLinkActive="active" [routerLink]="['./tags']" id="v-pills-settings-tab" data-toggle="pill" role="tab" aria-controls="v-pills-settings" aria-selected="false">Tags</a>
+            </div>
+        </div>
+    </div>
+    <div class="col d-inline d-sm-inline d-md-none">
+        <div class="row row-cols-3">
+            <a class="nav-link phone bg-danger" routerLinkActive="active" [routerLink]="['./dashboard']">Dashboard</a>
+            <a class="nav-link phone bg-success" routerLinkActive="active" [routerLink]="['./books']">Libros</a>
+            <a class="nav-link phone bg-warning" routerLinkActive="active" [routerLink]="['./autors']">Autores</a>
+            <a class="nav-link phone bg-info" routerLinkActive="active" [routerLink]="['./categories']">Catergorias</a>
+            <a class="nav-link phone bg-primary" routerLinkActive="active" [routerLink]="['./editorials']">Editoriales</a>
+            <a class="nav-link phone bg-light" routerLinkActive="active" [routerLink]="['./tags']">Tags</a>
+        </div>
+    </div>
+    <div class="col col-12 col-md-9 containerLogin">
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,20 @@
+.controls{
+    margin: 1rem;
+    float: left;
+    position: absolute;
+}
+
+.workspace{
+    margin: 1rem;
+    height: 100%;
+    width: auto;
+}
+
+.manager{
+    display: flex;
+    flex-direction: column;
+}
+
+.crearForm{
+ margin-top: 5%;
+}

@@ -1,0 +1,53 @@
+ <div *ngIf="!validSession()">
+  <div class="container">
+    <div class="col">
+        <div class="shadow rounded" id="loginBox">
+            <form class="m-3">
+              <h4>Accedé a EntrePáginas</h4>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" #email>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" #password>
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              </div>
+              <button type="button" class="btn btn-primary btn-block" (click)="sendCredentials(email.value,password.value)">Acceder</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<app-welcome *ngIf="validSession()" ></app-welcome>
+
+<!--
+
+<div class="row" *ngIf="validSession()">
+  <div class="col-2">
+      <div class="sidebar-container">
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-item-tab" data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false">Libros</a>
+            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false">Autores</a>
+            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false">Catergorias</a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" role="tab" aria-controls="v-pills-settings" aria-selected="false">Editoriales</a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" role="tab" aria-controls="v-pills-settings" aria-selected="false">Tags</a>
+          </div>
+      </div>
+      <button class="btn btn-warning btn-block" (click)="cerrarSession()"> Cerrar Sesión </button>
+  </div>
+  <div class="col-8">
+
+  </div>
+</div>
+
+
+    <router-outlet></router-outlet>
+-->

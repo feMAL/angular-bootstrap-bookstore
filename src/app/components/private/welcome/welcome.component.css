@@ -1,0 +1,23 @@
+.sidebar-container{
+    min-width: auto;
+    background-color: beige;
+    height: 100%;
+}
+.nav-link {
+    text-align: center;
+    margin: 1rem;
+    max-width: auto;
+}
+
+.nav-link .phone{
+    width: auto !important;
+    padding: 0;
+    margin: 0;
+    padding-right: 0%;
+}
+
+.containerLogin{
+    background-color: #ffcdcd;
+    border: darkred;
+    width: 100%;
+}

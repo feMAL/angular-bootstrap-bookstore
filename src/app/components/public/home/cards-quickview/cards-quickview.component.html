@@ -1,0 +1,25 @@
+<nav id="banner" style="background-color:lightsteelblue">
+  <div class="row">
+    <div class="col text-right">
+      <p class="p-4">UNA VEZ MÁS DAMAS GRATIS!!</p>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <!--
+      [routerLink]="['/book/',item._id]",
+
+      assets/libros/{{item.autor.name}}/{{item.imageFront}}
+    -->
+    <header class="m-3" ><h2>{{title}}</h2></header>
+    <div class="card-columns m-1">
+      <div class="card" *ngFor="let item of booksCards">
+        <img src="{{ item.imageFront }}" class="card-img-top" alt="{{item.title}}">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text">{{ item.briefDescription }}</p>
+          <p class="card-text"><small class="text-muted">{{ item.autor.name }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>

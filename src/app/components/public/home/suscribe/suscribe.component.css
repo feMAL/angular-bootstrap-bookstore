@@ -1,0 +1,8 @@
+.suscribe-container{
+    background-color: rgb(248, 213, 206);
+}
+
+#email{
+    display: inline;
+    width: 80%;
+}
