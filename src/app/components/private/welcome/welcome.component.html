@@ -1,4 +1,4 @@
-<div class="row justify-content-sm-center" *ngIf="validSession()">
+<div class="row" *ngIf="validSession()">
     <div class="col-2 d-none d-sm-none d-md-block">
         <div class="m-md-2 sidebar-container">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -11,15 +11,18 @@
             </div>
         </div>
     </div>
-    <div class="col d-inline d-sm-inline d-md-none">
-        <div class="row row-cols-3">
-            <a class="nav-link phone bg-danger" routerLinkActive="active" [routerLink]="['./dashboard']">Dashboard</a>
-            <a class="nav-link phone bg-success" routerLinkActive="active" [routerLink]="['./books']">Libros</a>
-            <a class="nav-link phone bg-warning" routerLinkActive="active" [routerLink]="['./autors']">Autores</a>
-            <a class="nav-link phone bg-info" routerLinkActive="active" [routerLink]="['./categories']">Catergorias</a>
-            <a class="nav-link phone bg-primary" routerLinkActive="active" [routerLink]="['./editorials']">Editoriales</a>
-            <a class="nav-link phone bg-light" routerLinkActive="active" [routerLink]="['./tags']">Tags</a>
+    <div class="d-inline d-sm-inline d-md-none">
+        <div class="row controls">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['./dashboard']">Dashboard</button>
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['./books']">Libros</button>
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['./autors']">Autores</button>
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['./categories']">Categorias</button>
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['./editorials']">Editorials</button>
+                <button type="button" class="btn btn-secondary btn-sm" [routerLink]="['./tags']" >Tags</button>
+              </div>
         </div>
+    
     </div>
     <div class="col col-12 col-md-9 containerLogin">
         <div class="container-fluid">

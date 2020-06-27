@@ -18,6 +18,7 @@ export class CardsQuickviewComponent implements OnInit {
   constructor(private _booksService:BookService) { }
 
   ngOnInit() {
+    this.title = 'Libros del Servidor'
     this.showProducts()
   }
 
