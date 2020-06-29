@@ -1,1 +1,26 @@
-<p>autores works!</p>
+<div class="manager">
+    <div class="row controls">
+        <div class="btn-group" role="group" aria-label="ControlBooks">
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='crear'">Crear</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='editar'">Editar</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='buscar'">Buscar</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='eliminar'">Eliminar</button>
+          </div>
+    </div>
+    <div [ngSwitch]="operation" class="d-block workspace">
+        
+        <div *ngSwitchCase="'crear'">
+          <app-editorial-add></app-editorial-add>
+        </div>
+        <div *ngSwitchCase="'editar'">
+          <app-editorial-edit></app-editorial-edit>
+        </div>
+        <div *ngSwitchCase="'buscar'">
+          <app-editorial-search></app-editorial-search>
+        </div>
+        <div *ngSwitchCase="'eliminar'">
+          <app-editorial-remove></app-editorial-remove>
+        </div>
+        <div *ngSwitchDefault></div>
+    </div>
+</div>

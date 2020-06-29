@@ -4,6 +4,9 @@ export const API_CONFIG = {
         login: '/singin',
         singup: '/register',
         book : '/book',
-        autor: '/autor'
+        autor: '/autor',
+        category: '/category',
+        editorial: '/editorial',
+        tag: '/tag'
     }
 }

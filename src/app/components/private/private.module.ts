@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
+
+import { LibrosModule } from './libros/libros.module';
+import { AutoresModule } from './autores/autores.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { WelcomeComponent } from './welcome/welcome.component'
@@ -10,6 +12,8 @@ import { AutoresComponent } from './autores/autores.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { TagsComponent } from './tags/tags.component';
 import { EditorialsComponent } from './editorials/editorials.component';
+
+
 
 
 @NgModule({
@@ -25,7 +29,8 @@ import { EditorialsComponent } from './editorials/editorials.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    LibrosModule,
+    AutoresModule
   ],
   exports: [
     DashboardComponent,

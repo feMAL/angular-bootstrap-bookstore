@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AutoresComponent implements OnInit {
 
+  public operations:string = 'crear'
+
   constructor() { }
 
   ngOnInit() {
+    this.operations = 'crear'
   }
 
 }

@@ -1,0 +1,230 @@
+<!-- FORMULARIO DEL LIBRO -->
+<form class="crearForm mt-3">
+    <!-- PRIMER FILA DE CAMPOS -->
+    <div class="form-row">
+      
+      <!-- CAMPO TITULO -->
+      <div class="col-md-6 mb-3">
+        <label>Titulo</label>
+        <input type="text" #title="ngModel" name="title" [(ngModel)]="book.title" class="form-control" placeholder="Titulo del libro" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <!-- CAMPO AUTOR -->
+      <div class="col-md-3 mb-3">
+        <label>Autores</label>
+        <input type="text" name="autors" #autors (keyup.enter)="getAutor(autors.value)" class="form-control" placeholder="Autor del libro" required>
+        <div *ngIf="listAutors" class="list-group">
+          <button type="button" *ngFor="let autorSelected of listAutors"
+                  class="list-group-item list-group-item-action active">
+                  {{autorSelected.name}}
+            <div class="float-right">
+              <span (click)="removeAutorToBook(autor)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+        <div *ngIf="showAutors" class="list-group">
+          <button type="button" *ngFor="let autor of showAutorsFound"
+                  class="list-group-item list-group-item-action">
+                  {{autor.name}}
+                  <div class="float-right">
+                    <span (click)="addAutorToBook(autor)">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      </svg>
+                    </span>
+                  </div>
+          </button>
+        </div>
+        <div class="invalid-feedback">
+          Please select a valid state.
+        </div>
+      </div>
+      <!-- CAMPO CATEGORIAS -->
+      <div class="col-md-3 mb-3">
+        <label>Categorias</label>
+        <input type="text" name="categories" #categories (keyup.enter)="getCategories(categories.value)"
+                class="form-control" placeholder="Categories del libro" required>
+          <div *ngIf="listCategories" class="list-group">
+            <button type="button" *ngFor="let categorieSelected of listCategories"
+                    class="list-group-item list-group-item-action active">
+                    {{categorieSelected.name}}
+              <div class="float-right">
+                <span (click)="removeCategorieToBook(autor)">
+                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                  </svg>
+                </span>
+              </div>
+            </button>
+          </div>
+          <div *ngIf="showCategories" class="list-group">
+          <button type="button" *ngFor="let categorie of showCategoriesFound"
+                  class="list-group-item list-group-item-action"> 
+                  {{categorie.name}}
+                  <div class="float-right">
+                    <span (click)="addCategorieToBook(categorie)">
+                      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                        <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                      </svg>
+                    </span>
+                  </div>
+          </button>
+        </div>
+        <div class="invalid-feedback">
+          Please provide a valid zip.
+        </div>
+      </div>
+    </div>
+    
+    <!-- SEGUNDA FILA DE CAMPOS -->
+    <div class="form-row">
+      <!-- CAMPO BREVE DESCRIPCION -->
+      <div class="col-md-6 mb-3">
+        <label>Breve Descripción</label>
+        <textarea class="form-control" name="minDescription" #minDescription="ngModel" [(ngModel)]="book.briefDescription" placeholder="Breve Descripción" rows="2"></textarea>
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+      <!-- CAMPO EDITORIAL -->
+      <div class="col-md-3 mb-3">
+        <label>Editorial</label>
+        <input type="text" name="editorial" #editorial (keyup.enter)="getEditorial(editorial.value)"
+                class="form-control" placeholder="Editorial del libro" required>
+        <div *ngIf="listEditorial" class="list-group">
+          <button type="button" *ngFor="let editorialSelected of listEditorial"
+                  class="list-group-item list-group-item-action active">
+                  {{ editorialSelected.name }}
+            <div class="float-right">
+              <span (click)="removeEditorialToBook(editorial)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+        <div *ngIf="showEditorial" class="list-group">
+          <button type="button" *ngFor="let editorial of showEditorialFound"
+                  class="list-group-item list-group-item-action"> {{editorial.name}}
+            <div class="float-right">
+              <span (click)="addEditorialToBook(editorial)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+      </div>
+      <!-- CAMPO ISBN -->
+      <div class="col-md-3 mb-3">
+        <label>ISBN</label>
+        <input type="numeric" class="form-control" name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" placeholder="ISBN del Libro" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <!-- CAMPO CANTIDAD PAGINAS DE LIBRO -->
+    <div class="form-row">
+      <div class="col col-md-2 col-sm-4 mb-3">
+        <label>Paginas del Libro</label>
+        <input type="numeric" class="form-control" name="pages" #pages="ngModel" [(ngModel)]="book.pages" placeholder="Paginas de Publicación" required>
+      </div>
+      <!-- CAMPO MES DE PUBLICACION DEL LIBRO -->
+      <div class="col col-md-2 col-sm-3 mb-3">
+        <label>Mes de Publicacion</label>
+        <input type="numeric" class="form-control" name="month" #month="ngModel" [(ngModel)]="book.monthPublished" placeholder="Mes de Publicación" required>
+      </div>
+      <!-- CAMPO AÑO DE PUBLICACION DEL LIBRO -->
+      <div class="col col-md-2 col-sm-4 mb-3">
+        <label>Año de Publicacion</label>
+        <input type="numeric" class="form-control" name="year" #year="ngModel" [(ngModel)]="book.yearPublished" placeholder="Año de Publicación" required>
+      </div>
+      <!-- CAMPO SINOPSIS LIBRO -->
+      <div class="col-md-6 mb-3">
+        <label>Sinopsis</label>
+        <textarea class="form-control" name="sinopsis" #sinopsis="ngModel" [(ngModel)]="book.sinopsis" placeholder="Breve Descripción" rows="1"></textarea>
+        <div class="invalid-feedback">
+          Please provide a valid city.
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <!-- CAMPO TAGS LIBRO -->
+      <div class="col-md-2 mb-3">
+        <label>Tags</label>
+        <input type="text" name="tags" #tags (keyup.enter)="getTags(tags.value)" class="form-control" placeholder="Tags del libro" required>
+        <div *ngIf="listTags" class="list-group">
+          <button type="button" *ngFor="let tagsSelected of listTags"
+                  class="list-group-item list-group-item-action active">
+                  {{ tagsSelected.name }}
+            <div class="float-right">
+              <span (click)="removeTagsToBook(tags)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+        <div *ngIf="showTags" class="list-group">
+          <button type="button" *ngFor="let tag of showTagsFound"
+                  class="list-group-item list-group-item-action"> {{ tags.name }}
+            <div class="float-right">
+              <span (click)="addTagsToBook(tag)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+                  <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                  <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </div>
+        <div class="invalid-feedback">
+          Please select a valid state.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Link Amazon</label>
+        <input type="text" class="form-control" name="linkAmazon" #linkAmazon="ngModel" [(ngModel)]="book.linkAmazon" placeholder="Link Amazon" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label>Link CasadeLibros</label>
+        <input type="text" class="form-control" name="linkCasadeLibro" #linkCasadeLibro="ngModel" [(ngModel)]="book.linkCasadeLibro" placeholder="Link CasadeLibros" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+        <label class="form-check-label" for="invalidCheck3">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-secondary" type="button"  (click)="createBook()">Submit form</button>
+</form>  

@@ -1,18 +1,18 @@
 .controls{
-    margin: 1rem;
-    float: left;
-    position: absolute;
+    margin-top: 10px;
+    margin-left: 5px;
+    /*float: left;
+    position: absolute;*/
 }
 
 .workspace{
     margin: 1rem;
-    height: 100%;
+    height: auto;
     width: auto;
 }
 
 .manager{
-    display: flex;
-    flex-direction: column;
+    display: block;
 }
 
 .crearForm{
