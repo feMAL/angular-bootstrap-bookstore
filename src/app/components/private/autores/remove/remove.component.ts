@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-editorial-remove',
+  selector: 'app-autor-remove',
   templateUrl: './remove.component.html',
   styleUrls: ['./remove.component.css']
 })

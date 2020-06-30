@@ -1,1 +1,31 @@
-<p>add works!</p>
+<form class="crearForm mt-3">
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>Nombre</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="autor.name" class="form-control" placeholder="Nombre del Autor" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Alias</label>
+            <input type="text" name="alias" #alias="ngModel" [(ngModel)]="autor.alias" class="form-control" placeholder="Alias del Autor" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>Página del Autor</label>
+            <input type="text" name="url" #url="ngModel" [(ngModel)]="autor.url" class="form-control" placeholder="Url del Autor" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Nacionalidad</label>
+            <input type="text" name="nacionalidad" #nacionalidad="ngModel" [(ngModel)]="autor.nationality" class="form-control" placeholder="Nacionalidad del Autor" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label> Imagen del Autor </label>
+            <div class="custom-file">
+              <input type="file" class="form-control" placeholder="Imagen del Autor" aria-describedby="inputGroupFileAddon01">
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-secondary btn-block" (click)="createNewAutor()">Cargar Autor</button>
+</form>

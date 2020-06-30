@@ -18,13 +18,28 @@ export class AutorService {
   getAutorsByName(name:string){
     let url = this.urlBase + API_CONFIG.uri.autor
     
-    let headers = new HttpHeaders()
     let params = new HttpParams().set('name',name)
-    
-    console.log(url)
 
     return this._serviceAutors.get(url,{params}).pipe( map( (response:any)=>{
       return response.autors
-    }))
+    } ) )
+  }
+  
+  createNewAutor(autor,passport){
+    let url = this.urlBase + API_CONFIG.uri.autor
+
+    let headers = new HttpHeaders().set('authorization',passport)
+
+    return this._serviceAutors.post(url,autor,{headers})
+  }
+
+  getUniqueAutor(autorID){
+    let url = `${this.urlBase}${API_CONFIG.uri.autor}/${autorID}`
+
+    return this._serviceAutors.get(url)
+  }
+
+  getAllAutors( ){
+    
   }
 }
