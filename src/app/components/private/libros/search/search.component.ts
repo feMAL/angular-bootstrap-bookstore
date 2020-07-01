@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BookService } from 'src/app/services/book.service'
 
 @Component({
   selector: 'app-book-search',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  public booksFound: any[] = []
+
+  constructor(
+    private _bookService: BookService
+  ) { }
 
   ngOnInit() {
+    this._bookService.getAllBooks()
+      .subscribe((data:any)=>{
+        this.booksFound = data
+        console.log(this.booksFound)
+      },err=>{
+        console.error(err.message)
+      })
+    
+  }
+
+  buscarLibro(search:string){
+    this._bookService.requestBooks(search).subscribe((data)=>{
+      console.log(data)
+    },err=>{
+      console.error(err.message)
+    })
   }
 
 }

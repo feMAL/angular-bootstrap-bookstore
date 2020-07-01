@@ -39,7 +39,9 @@ export class AutorService {
     return this._serviceAutors.get(url)
   }
 
-  getAllAutors( ){
-    
+  getAllAutors(  ){
+    let url = `${this.urlBase}${API_CONFIG.uri.autor}`
+
+    return this._serviceAutors.get(url).pipe( map( (data:any) =>  data.autors ) )
   }
 }

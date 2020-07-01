@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor() { }
+  public operation:string
+
+  constructor() { this.operation = 'crear' }
 
   ngOnInit() {
   }

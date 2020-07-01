@@ -1,0 +1,16 @@
+<form class="crearForm mt-3">
+    <div *ngIf="message" [ngClass]="messageType" class="alert">
+        <span>{{message}}</span>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>Categoría</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="category.name" class="form-control" placeholder="Nombre de la Categoría" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Descripción de la Categoría</label>
+            <input type="text" name="description" #description="ngModel" [(ngModel)]="category.description" class="form-control" placeholder="Descripción de Categoría" required>
+        </div>
+    </div>
+    <button class="btn btn-secondary btn-block" (click)="createNewCategory()">Crear Categoría</button>
+</form>

@@ -12,6 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class AddComponent implements OnInit {
 
   public autor: Autor
+  public message: string
+  public messageType: string
 
   constructor(
     private _autorService: AutorService,
@@ -24,11 +26,16 @@ export class AddComponent implements OnInit {
 
   createNewAutor() {
     this._autorService.createNewAutor(this.autor,this._userService.getToken())
-      .subscribe(data=>{
+      .subscribe( (data:any) => {
         console.log(data)
+        this.messageType = 'alert-success'
+        this.message = `El Autor/a ${data.newAutor.name} se ha creado`
+
+        this.autor = new Autor('','','','',0,0,'')
       },err =>{
-        console.log(err.message)
-      })
+        this.messageType = 'alert-danger'
+        this.message = err.message
+      })   
   }
 
 }

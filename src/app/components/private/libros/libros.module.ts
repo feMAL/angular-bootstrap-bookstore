@@ -5,15 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { SearchComponent } from './search/search.component';
-import { RemoveComponent } from './remove/remove.component';
 
 
 @NgModule({
   declarations: [
     AddComponent,
     EditComponent,
-    SearchComponent,
-    RemoveComponent
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -22,8 +20,7 @@ import { RemoveComponent } from './remove/remove.component';
   exports: [
     AddComponent,
     EditComponent,
-    SearchComponent,
-    RemoveComponent
+    SearchComponent
   ]
 })
 export class LibrosModule { }

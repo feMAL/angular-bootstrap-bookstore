@@ -1,36 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { AutorService } from 'src/app/services/autor.service'
+import { CategoryService } from 'src/app/services/category.service'
 
 @Component({
-  selector: 'app-autor-search',
+  selector: 'app-categories-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
 
-  public autorsFound: any[] = []
+  public categoriesFound: any[] = []
 
   constructor(
-    private _autorService: AutorService
+    private _categoryService: CategoryService
   ) { }
 
   ngOnInit() {
-    this._autorService.getAllAutors()
+    this._categoryService.getAllCategories()
       .subscribe((data:any)=>{
-        this.autorsFound = data
-        console.log(this.autorsFound)
+        this.categoriesFound = data
       },err=>{
         console.error(err.message)
       })    
   }
 
   buscarLibro(search:string){
-    this._autorService.getAutorsByName(search)
+    this._categoryService.getCategoryByName(search)
       .subscribe((data)=>{
-        console.log(data)
+        this.categoriesFound = data
       },err=>{
         console.error(err.message)
       })
   }
+
 
 }

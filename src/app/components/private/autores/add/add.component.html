@@ -1,4 +1,7 @@
 <form class="crearForm mt-3">
+    <div *ngIf="message" [ngClass]="messageType" class="alert">
+        <span>{{message}}</span>
+    </div>
     <div class="form-row">
         <div class="col-md-6 mb-3">
             <label>Nombre</label>

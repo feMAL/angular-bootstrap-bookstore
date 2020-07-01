@@ -7,7 +7,6 @@ import { EditComponent } from './edit/edit.component';
 import { SearchComponent } from './search/search.component';
 
 
-
 @NgModule({
   declarations: [
     AddComponent,
@@ -18,10 +17,10 @@ import { SearchComponent } from './search/search.component';
     CommonModule,
     FormsModule
   ],
-  exports: [
+  exports:[
     AddComponent,
     EditComponent,
     SearchComponent
   ]
 })
-export class AutoresModule { }
+export class TagsModule { }

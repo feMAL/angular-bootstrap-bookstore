@@ -1,0 +1,20 @@
+.controls{
+    margin-top: 10px;
+    margin-left: 5px;
+    /*float: left;
+    position: absolute;*/
+}
+
+.workspace{
+    margin: 1rem;
+    height: auto;
+    width: auto;
+}
+
+.manager{
+    display: block;
+}
+
+.crearForm{
+ margin-top: 5%;
+}
