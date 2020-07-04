@@ -33,4 +33,8 @@ export class SearchComponent implements OnInit {
     })
   }
 
+  removeBook(book){
+    console.log(`el libro que desea eliminar es:  ${book.title}`)
+  }
+
 }

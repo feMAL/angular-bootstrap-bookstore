@@ -12,21 +12,27 @@ export class CardsQuickviewComponent implements OnInit {
 
   @Input() filter
   
-  public booksCards:[]=[]
-  public title:string
+  public booksCards : [] = []
+  public itemBook
+  public puntero    : number = 0
+  public title      : string
 
-  constructor(private _booksService:BookService) { }
+  constructor(
+    private _booksService:BookService
+  ) { }
 
   ngOnInit() {
     this.title = 'Libros del Servidor'
     this.showProducts()
   }
 
+  
+
   showProducts(){
     this._booksService.requestBooks({})
       .subscribe((data:any) => {
         this.booksCards = data.book
-        console.log(data)
+        this.itemBook = this.booksCards[this.puntero]
       })
   }
 

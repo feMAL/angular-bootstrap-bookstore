@@ -24,10 +24,8 @@
     </div>
     <div class="form-row">
         <div class="col-md-6 mb-3">
-            <label> Imagen del Autor </label>
-            <div class="custom-file">
-              <input type="file" class="form-control" placeholder="Imagen del Autor" aria-describedby="inputGroupFileAddon01">
-            </div>
+            <label> Imagen del Autor </label>        
+            <input type="text" name="imagen" #imagen="ngModel" [(ngModel)]="autor.image" class="form-control" placeholder="Imagen Autor URL" required>
         </div>
     </div>
     <button class="btn btn-secondary btn-block" (click)="createNewAutor()">Cargar Autor</button>

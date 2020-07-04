@@ -6,6 +6,7 @@ import { AutorService } from 'src/app/services/autor.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { EditorialService } from 'src/app/services/editorial.service';
 import { TagsService } from 'src/app/services/tags.service';
+import { BookService } from 'src/app/services/book.service';
 
 @Component({
   selector: 'app-book-add',
@@ -34,8 +35,13 @@ export class AddComponent implements OnInit {
   public showTags: Boolean = false
   public listTags: any[] = []
 
+  // ATRIBUTOS DEL PROCESO POST ALTA
+
+  public message: string
+  public messageType: string
 
   constructor(
+    private _serviceBook: BookService,
     private _serviceAutor: AutorService,
     private _serviceCategory: CategoryService,
     private _serviceEditorial: EditorialService,
@@ -50,7 +56,32 @@ export class AddComponent implements OnInit {
     Books Funcionales  */
 
   createBook(){
-    console.log(this.book)
+
+    if(this.listEditorial.length > 0 && this.listAutors.length > 0 && this.listCategories.length > 0 ){
+      
+      this.book.editorial = this.listEditorial
+      this.book.autor = this.listAutors
+      this.book.category = this.listCategories
+      this.book.tags = this.listTags
+
+      this._serviceBook.saveNewBook(this.book)
+        .subscribe(data => {
+          this.messageType = 'alert-success'
+          this.message = `El Libro "${data.title}" se ha creado`
+
+          this.book= new Book('',[{}],[{}],'',0,1,12,2000,1,'','','',[{}]);
+          this.book.editorial = []
+          this.book.autor = []
+          this.book.category = []
+          this.book.tags = []
+
+        },err=>{
+          this.messageType = 'alert-danger'
+          this.message = err.message
+        })
+    }
+    
+
   }
 
   /*      AUTORS 
@@ -148,6 +179,7 @@ export class AddComponent implements OnInit {
 
   /*      TAGS 
     TAGS Funcionales  */
+    
     removeTagsToBook(tag){
       this.listTags.splice(this.listTags.indexOf(tag),1);
     }

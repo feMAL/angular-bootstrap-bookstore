@@ -1,0 +1,17 @@
+.controls{
+    width:120% !important;
+}
+
+.carousel-control-prev {
+    left: -40px;
+}
+
+.carousel-control-next {
+    right: -40px;
+}
+
+.img-card{
+    height: 300px;
+    width: auto;
+    overflow: hidden;
+}

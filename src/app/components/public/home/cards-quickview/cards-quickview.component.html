@@ -1,25 +1,21 @@
-<nav id="banner" style="background-color:lightsteelblue">
-  <div class="row">
-    <div class="col text-right">
-      <p class="p-4">{{title}}</p>
-    </div>
-  </div>
-</nav>
-  <div class="container">
-    <!--
-      [routerLink]="['/book/',item._id]",
 
-      assets/libros/{{item.autor.name}}/{{item.imageFront}}
-    -->
-    <header class="m-3" ><h2>{{title}}</h2></header>
-    <div class="card-columns">
-      <div class="card m-1" *ngFor="let item of booksCards">
-        <img src="{{ item.imageFront }}" class="card-img-top" alt="{{item.title}}">
-        <div class="card-body">
-          <h5 class="card-title">{{ item.title }}</h5>
-          <p class="card-text">{{ item.briefDescription }}</p>
-          <p class="card-text"><small class="text-muted">{{ item.autor.name }}</small></p>
+<div class="container">
+  <div class="card-columns">
+    <div class="card mt-2">
+      <img src="{{ itemBook.imageFront }}" class="card-img-top img-card" alt="{{itemBook.title}}">
+      <div class="card-body">
+        <h6 class="card-title">{{ itemBook.title }}</h6>
+        <p class="card-text">{{ itemBook.briefDescription }}</p>
+        <p class="card-text"><small class="text-muted">{{ itemBook.autor.name }}</small></p>
+      </div>
+      <div class="controls">
+        <div class="carousel-control-prev text-left">
+          <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+        </div>
+        <div class="carousel-control-next text-rigth">
+          <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
         </div>
       </div>
     </div>
   </div>
+</div>

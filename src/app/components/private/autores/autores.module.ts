@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
 import { SearchComponent } from './search/search.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,7 +17,8 @@ import { SearchComponent } from './search/search.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     AddComponent,

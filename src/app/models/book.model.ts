@@ -7,7 +7,7 @@ export class Book {
         public autor: Array<Object>,
         public briefDescription: String,
         public pages: Number,
-        public isbn13: Number,
+        public isbn: Number,
         public monthPublished: Number,
         public yearPublished: Number,
         public editorial: Object,
