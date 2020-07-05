@@ -31,12 +31,27 @@ export class CardsQuickviewComponent implements OnInit {
     this.showProducts()
   }
 
+  movePrev = () => {
+    if(this.puntero > 0){
+      this.puntero = this.puntero - 1
+      this.itemBook = this.booksCards[this.puntero]
+    }
+  }
+
+  moveNext = () => {
+
+    if(this.puntero < this.booksCards.length-1){
+      this.puntero = this.puntero + 1
+      this.itemBook = this.booksCards[this.puntero]
+    }
+  }
+
   showProducts(){
     this._booksService.getBooksOfAutors(this.autorFilter._id)
       .subscribe( (data:Book[]) => {
         this.booksCards = data
         if(this.booksCards.length > 0){
-          this.itemBook = this.booksCards[0]
+          this.itemBook = this.booksCards[this.puntero]
           this.loading = true
         }
       })

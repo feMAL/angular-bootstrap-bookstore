@@ -4,14 +4,18 @@
       <img [src]="itemBook.imageFront" class="card-img-top img-card" alt="{{itemBook.title}}">
       <div class="card-body">
         <h6 class="card-title">{{ itemBook.title }}</h6>
-        <p class="card-text">{{ itemBook.briefDescription }}</p>
-        <p class="card-text"><small class="text-muted">{{ itemBook.autor.name }}</small></p>
+        <p class="card-text"><small>{{ itemBook.briefDescription }}</small></p>
+        <p class="card-text float-rigth">
+          <span class="badge badge-pill badge-danger" *ngFor="let cate of itemBook.category">
+            {{ cate.name }}
+          </span>
+        </p>
       </div>
       <div class="controls">
-        <div class="carousel-control-prev text-left">
+        <div class="carousel-control-prev text-left" (click)="movePrev()">
           <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
         </div>
-        <div class="carousel-control-next text-rigth">
+        <div class="carousel-control-next text-rigth" (click)="moveNext()">
           <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
         </div>
       </div>

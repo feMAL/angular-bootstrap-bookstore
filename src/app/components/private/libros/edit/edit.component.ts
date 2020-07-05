@@ -54,7 +54,7 @@ export class EditComponent implements OnInit {
     
   ) { 
     
-    this.book= new Book('',[{}],[{}],'',0,1,12,2000,[{}],'','','',[{}],{},[{}],'','');
+    this.book= new Book('',[{}],[{}],'',0,1,12,2000,[{}],'','','',[{}],[{}],'','');
 
     this._activeRoute.params.subscribe(params=>{
 

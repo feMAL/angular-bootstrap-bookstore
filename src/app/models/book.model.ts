@@ -14,9 +14,9 @@ export class Book {
         public linkAmazon: String,
         public linkCasadeLibro: String,
         public tags: Array<Object>,
-        public fragment?: object,
         public comments?: Array<Object>,
         public imageFront?: String,
-        public imageBack?: String
+        public imageBack?: String,
+        public fragment?: object
      ){ }
 }
