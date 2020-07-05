@@ -18,7 +18,6 @@ export class SearchComponent implements OnInit {
     this._bookService.getAllBooks()
       .subscribe((data:any)=>{
         this.booksFound = data
-        console.log(this.booksFound)
       },err=>{
         console.error(err.message)
       })
@@ -26,8 +25,8 @@ export class SearchComponent implements OnInit {
   }
 
   buscarLibro(search:string){
-    this._bookService.requestBooks(search).subscribe((data)=>{
-      console.log(data)
+    this._bookService.requestBooks(search).subscribe((data:any)=>{
+      this.booksFound = data
     },err=>{
       console.error(err.message)
     })

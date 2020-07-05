@@ -135,7 +135,7 @@
       <!-- CAMPO ISBN -->
       <div class="col-md-3 mb-3">
         <label>ISBN</label>
-        <input type="numeric" class="form-control" name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" placeholder="ISBN del Libro" required>
+        <input type="numeric" class="form-control" name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn13" placeholder="ISBN del Libro" required>
         <div class="valid-feedback">
           Looks good!
         </div>
@@ -227,5 +227,6 @@
         <input type="text" class="form-control" name="linkImagenBack" #linkImagenBack="ngModel" [(ngModel)]="book.imageBack" placeholder="Link CasadeLibros" required>
       </div>
     </div>
-    <button class="btn btn-secondary btn-block" type="button"  (click)="createBook()">Submit form</button>
+    <button class="btn btn-secondary btn-block" *ngIf="is_updated" type="button" (click)="updateUniqueBook()">Actualizar Libro</button>
+    <button class="btn btn-secondary btn-block" *ngIf="!is_updated" type="button" (click)="createBook()">Crear Libro Libro</button>
 </form>  

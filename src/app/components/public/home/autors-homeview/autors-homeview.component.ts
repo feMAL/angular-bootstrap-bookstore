@@ -9,6 +9,7 @@ import { AutorService } from 'src/app/services/autor.service';
 export class AutorsHomeviewComponent implements OnInit {
 
   public autorsHomeView: any[] = []
+  public loading:boolean = false
 
   constructor(
     public _autorService: AutorService
@@ -17,8 +18,9 @@ export class AutorsHomeviewComponent implements OnInit {
   ngOnInit() {
     this._autorService.getAllAutors()
       .subscribe((data:any)=>{
+        
         this.autorsHomeView = data
-        console.log(this.autorsHomeView)
+        this.loading = true
       },err=>{
         console.error(err.message)
       })    

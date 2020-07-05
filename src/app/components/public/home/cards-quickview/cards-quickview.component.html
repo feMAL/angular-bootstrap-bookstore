@@ -1,8 +1,7 @@
-
 <div class="container">
   <div class="card-columns">
-    <div class="card mt-2">
-      <img src="{{ itemBook.imageFront }}" class="card-img-top img-card" alt="{{itemBook.title}}">
+    <div *ngIf="loading" class="card mt-2">
+      <img [src]="itemBook.imageFront" class="card-img-top img-card" alt="{{itemBook.title}}">
       <div class="card-body">
         <h6 class="card-title">{{ itemBook.title }}</h6>
         <p class="card-text">{{ itemBook.briefDescription }}</p>
@@ -17,5 +16,11 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="text-center mt-3 mb-3">
+  <div *ngIf="!loading" class="spinner-border text-danger" role="status">
+          <span class="sr-only">Loading...</span>
   </div>
 </div>

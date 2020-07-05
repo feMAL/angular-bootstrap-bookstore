@@ -1,5 +1,4 @@
 export class Book {
-
     
     constructor(
         public title: String,
@@ -7,10 +6,10 @@ export class Book {
         public autor: Array<Object>,
         public briefDescription: String,
         public pages: Number,
-        public isbn: Number,
+        public isbn13: Number,
         public monthPublished: Number,
         public yearPublished: Number,
-        public editorial: Object,
+        public editorial: Array<Object>,
         public sinopsis: String,
         public linkAmazon: String,
         public linkCasadeLibro: String,

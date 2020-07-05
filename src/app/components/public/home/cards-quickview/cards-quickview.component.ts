@@ -3,6 +3,10 @@ import { Component, OnInit, Input } from '@angular/core';
 //SERVICIOS
 import { BookService } from 'src/app/services/book.service';
 
+//MODELS
+import { Autor } from 'src/app/models/autor.model';
+import { Book } from 'src/app/models/book.model';
+
 @Component({
   selector: 'app-cards-quickview',
   templateUrl: './cards-quickview.component.html',
@@ -10,12 +14,13 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class CardsQuickviewComponent implements OnInit {
 
-  @Input() filter
+  @Input() autorFilter: Autor
   
-  public booksCards : [] = []
+  public booksCards : Book[] = []
   public itemBook
   public puntero    : number = 0
   public title      : string
+  public loading    : boolean = false
 
   constructor(
     private _booksService:BookService
@@ -26,16 +31,14 @@ export class CardsQuickviewComponent implements OnInit {
     this.showProducts()
   }
 
-  
-
   showProducts(){
-    this._booksService.requestBooks({})
-      .subscribe((data:any) => {
-        this.booksCards = data.book
-        this.itemBook = this.booksCards[this.puntero]
+    this._booksService.getBooksOfAutors(this.autorFilter._id)
+      .subscribe( (data:Book[]) => {
+        this.booksCards = data
+        if(this.booksCards.length > 0){
+          this.itemBook = this.booksCards[0]
+          this.loading = true
+        }
       })
   }
-
-  
-
 }

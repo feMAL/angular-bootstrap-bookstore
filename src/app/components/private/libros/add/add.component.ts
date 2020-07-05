@@ -35,6 +35,8 @@ export class AddComponent implements OnInit {
   public showTags: Boolean = false
   public listTags: any[] = []
 
+  public is_updated:Boolean = false
+
   // ATRIBUTOS DEL PROCESO POST ALTA
 
   public message: string
@@ -47,7 +49,7 @@ export class AddComponent implements OnInit {
     private _serviceEditorial: EditorialService,
     private _serviceTags: TagsService
   ) { 
-    this.book= new Book('',[{}],[{}],'',0,1,12,2000,1,'','','',[{}]);
+    this.book= new Book('',[{}],[{}],'',0,1,12,2000,[{}],'','','',[{}],{},[{}],'','');
   }
 
   ngOnInit() {}
@@ -64,18 +66,21 @@ export class AddComponent implements OnInit {
       this.book.category = this.listCategories
       this.book.tags = this.listTags
 
+      console.log(this.book)
+
       this._serviceBook.saveNewBook(this.book)
         .subscribe(data => {
           this.messageType = 'alert-success'
           this.message = `El Libro "${data.title}" se ha creado`
 
-          this.book= new Book('',[{}],[{}],'',0,1,12,2000,1,'','','',[{}]);
+          this.book= new Book('',[{}],[{}],'',0,1,12,2000,[{}],'','','',[{}],{},[{}],'','');
           this.book.editorial = []
           this.book.autor = []
           this.book.category = []
           this.book.tags = []
 
         },err=>{
+          console.log(err)
           this.messageType = 'alert-danger'
           this.message = err.message
         })

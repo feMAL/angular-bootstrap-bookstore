@@ -1,4 +1,6 @@
 export class Autor {
+
+    public _id
     
     constructor(
         public name       : string,
