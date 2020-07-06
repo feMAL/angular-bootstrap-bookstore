@@ -2,3 +2,14 @@ footer{
     position: relative;
     bottom: 0;
 }
+.social-net{
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+
+.thumb{
+    height: 30px !important;
+    width: auto;
+    float: right;
+}

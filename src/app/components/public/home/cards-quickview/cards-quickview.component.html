@@ -3,8 +3,8 @@
     <div *ngIf="loading" class="card mt-2">
       <img [src]="itemBook.imageFront" class="card-img-top img-card" alt="{{itemBook.title}}">
       <div class="card-body">
-        <h6 class="card-title">{{ itemBook.title }}</h6>
-        <p class="card-text"><small>{{ itemBook.briefDescription }}</small></p>
+        <h6 class="card-title" routerLink="['/autor',itembook.autor[0]._id]">{{ itemBook.title }}</h6>
+        <p class="card-text"><small>{{ itemBook.briefDescription}}</small></p>
         <p class="card-text float-rigth">
           <span class="badge badge-pill badge-danger" *ngFor="let cate of itemBook.category">
             {{ cate.name }}

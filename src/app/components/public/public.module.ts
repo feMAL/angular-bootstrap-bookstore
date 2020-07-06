@@ -11,6 +11,8 @@ import { NextsComponent } from './nexts/nexts.component'
 import { HomeModule } from './home/home.module';
 import { PrivateModule } from '../private/private.module';
 import { RouterModule } from '@angular/router';
+import { BookComponent } from './book/book.component';
+import { AutorComponent } from './autor/autor.component';
 
 
 
@@ -22,7 +24,9 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     SearchComponent,
     SingupComponent,
-    NextsComponent 
+    NextsComponent,
+    BookComponent,
+    AutorComponent 
   ],
   imports: [
     CommonModule,

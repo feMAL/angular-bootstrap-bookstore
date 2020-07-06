@@ -7,6 +7,7 @@ import { SuscribeComponent } from './suscribe/suscribe.component';
 import { CardsQuickviewComponent } from './cards-quickview/cards-quickview.component';
 import { AutorsHomeviewComponent } from './autors-homeview/autors-homeview.component';
 import { BannerComponent } from './banner/banner.component';
+import { BooksCardsComponent } from './books-cards/books-cards.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { BannerComponent } from './banner/banner.component';
     SuscribeComponent,
     CardsQuickviewComponent,
     AutorsHomeviewComponent,
-    BannerComponent
+    BannerComponent,
+    BooksCardsComponent
   ],
   imports: [
     CommonModule
