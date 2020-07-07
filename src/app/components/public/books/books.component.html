@@ -1,6 +1,24 @@
 <div class="container">
     <div class="d-inline">
-        <div class="col-5"></div>
-        <div class="col-4"></div>
+        <div class="col">
+            <app-filter [filtroPara]="'libro'"></app-filter>
+        </div>
+        <div class="col">
+            <div class="card-columns">
+                <div class="card text-center">
+                    <div class="card-img-top mt-3">
+                        <img src="https://kbimages1-a.akamaihd.net/8c74a521-f743-4aff-b87a-df78631d66a1/180/1000/False/harry-potter-y-la-piedra-filosofal-1.jpg" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Harry Potter y la piedra Filosofal</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia vitae veritatis eligendi commodi laudantium quo beatae nemo modi consequatur exercitationem aut debitis repellat, voluptas quam cumque vero possimus, mollitia earum.</p>
+                        <a class="btn btn-primary">Ver Libro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <app-suscribe></app-suscribe>
     </div>
 </div>

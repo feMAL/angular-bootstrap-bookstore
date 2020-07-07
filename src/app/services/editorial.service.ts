@@ -15,6 +15,13 @@ export class EditorialService {
         private _http:HttpClient
     ){}
 
+    getAllEditorials(){
+        let url = this.urlBase + API_CONFIG.uri.editorial
+
+        return this._http.get(url)
+            .pipe( map( (data:any) => data.editorials ) )
+    }
+
     getEditorialByName(editorial){
         let url = this.urlBase + API_CONFIG.uri.editorial
 

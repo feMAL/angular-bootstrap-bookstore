@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component'
 import { NavbarComponent } from './navbar/navbar.component'
 
-import { __ROUTES } from '../app.routes'
+import { __ROUTES } from '../app.routes';
+
 
 
 @NgModule({
