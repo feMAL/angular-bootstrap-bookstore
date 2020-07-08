@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { CategoryService } from 'src/app/services/category.service';
 import { EditorialService } from 'src/app/services/editorial.service';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -11,13 +12,21 @@ import { EditorialService } from 'src/app/services/editorial.service';
 })
 export class FilterComponent implements OnInit {
 
-  @Input() filtroPara    : string = "autor"
-  public showFilter      : boolean = true
+  @Input() filtroPara    : string  = "autor"
+  @Input() formulario    : NgForm
+  
   public title           : string
+  
+  public switchCheck     : boolean = false
+  public showFilter      : boolean = true
+  public criterio        : string
+  
   public allCategories   : []
   public allEditorials   : []
+  
   public messageType     : string
   public message         : string
+  
 
   constructor(
     private _categoryService : CategoryService,
@@ -30,6 +39,21 @@ export class FilterComponent implements OnInit {
     }else{
       this.title = 'Filtrar Libros'
       this.getCategories()
+      this.getEditorial()
+    }
+  }
+
+  getFilterOPT(categorySel, editorialSel){
+    console.log(this.formulario)
+    console.log(categorySel)
+    console.log(editorialSel)
+
+  }
+
+  switchValue(value){
+    this.switchCheck = value
+    if(this.switchCheck){
+      
     }
   }
 
@@ -43,7 +67,7 @@ export class FilterComponent implements OnInit {
       })
   }
   
-  getEditorial(editorial){
+  getEditorial(){
       this._serviceEditorial.getAllEditorials()
         .subscribe((data:any)=>{
           this.allEditorials = data

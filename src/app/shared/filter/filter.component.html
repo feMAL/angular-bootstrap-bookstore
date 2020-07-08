@@ -1,4 +1,4 @@
-<div class="card bg-light mb-3" style="max-width: 22rem;">
+<div class="card bg-light mb-3 shadow" style="max-width: 22rem;">
     <div class="card-header" (click)="showFilter=!showFilter"> {{ title }}
         <div class="float-right">
             <span *ngIf="!showFilter">
@@ -19,7 +19,7 @@
     </div>
     <div class="card-body" *ngIf="showFilter">
       <div class="container">
-          <form *ngIf="filtroPara=='autor'" >
+          <form *ngIf="filtroPara=='autor'" #formAutor>
             <div class="form-inline">
                 <label >Nombre</label><input type="text" class="form-control form-control-sm">
             </div>
@@ -30,30 +30,41 @@
                 </select>
             </div>
             <div class="form-row mt-3"> 
-                <span class="btn btn-outline-danger btn-block"> Buscar Autor </span>
+                <span class="btn btn-outline-danger btn-block" > Filtrar Libros </span>
             </div>
           </form>
-          <form *ngIf="filtroPara=='libro'">
-            <div class="form-inline">
-                <label>Titulo de Libro</label><input type="text" class="form-control form-control-sm">
+        
+          <form *ngIf="filtroPara=='libro'" #formBook>
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" #titleCheck id="switchISBN" (click)="switchValue(titleCheck.checked)"  >
+                <label class="custom-control-label" *ngIf="!switchCheck" for="switchISBN">Buscar por ISBN</label>
+                <label class="custom-control-label" *ngIf="switchCheck" for="switchISBN">Buscar por Titulo</label>
             </div>
-            <div class="form-inline">
+            <div *ngIf="switchCheck" class="form-inline mt-3">
+                <label>ISBN del Libro</label>
+                <input type="text" class="form-control form-control-sm" placeholder="ISBN" #isbn>
+            </div>
+            <div *ngIf="!switchCheck" class="form-inline mt-3">
+                <label>Titulo de Libro</label>
+                <input type="text" class="form-control form-control-sm float-right" placeholder="Titulo" #titleBook> 
+            </div>
+            <div class="form-inline mt-1">
                 <label >Categoría</label>
-                <select class="custom-select custom-select-sm">
+                <select class="custom-select custom-select-sm float-right" #categorySel>
+                    <option value="0" disabled>Elije una categoría</option>
                     <option *ngFor="let category of allCategories" value="category._id">{{category.name}}</option>
                 </select>
             </div>
-            <div class="form-inline">
+            <div class="form-inline mt-1">
                 <label>Editorial</label>
-                <select class="custom-select custom-select-sm">
-                    <option value=""></option>
+                <select class="custom-select custom-select-sm" #editorialSel>
+                    <option value="0" disabled>Elije una editorial</option>
+                    <option *ngFor="let editorial of allEditorials" value="editorial._id">{{editorial.name}}</option>
                 </select>
             </div>
-            <div class="form-inline">
-                <label>ISBN</label><input type="text" class="form-control form-control-sm">
-            </div>
+
             <div class="form-row mt-3">
-                <span class="btn btn-outline-danger btn-block"> Buscar Libros </span>
+                <span class="btn btn-outline-danger btn-block" (click)="getFilterOPT(categorySel.selectedOptions.value, editorialSel.selectedOptions)"> Filtrar Libros </span>
             </div>
           </form>
       </div>

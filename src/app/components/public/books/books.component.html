@@ -3,16 +3,19 @@
         <div class="col">
             <app-filter [filtroPara]="'libro'"></app-filter>
         </div>
+        <div *ngIf="message" [ngClass]="messageType" class="alert">
+            <span>{{message}}</span>
+        </div>
         <div class="col">
             <div class="card-columns">
-                <div class="card text-center">
+                <div *ngFor="let book of booksArray" class="card shadow text-center">
                     <div class="card-img-top mt-3">
-                        <img src="https://kbimages1-a.akamaihd.net/8c74a521-f743-4aff-b87a-df78631d66a1/180/1000/False/harry-potter-y-la-piedra-filosofal-1.jpg" alt="">
+                        <img [src]="book.imageFront" class="card-img-top" alt="">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Harry Potter y la piedra Filosofal</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia vitae veritatis eligendi commodi laudantium quo beatae nemo modi consequatur exercitationem aut debitis repellat, voluptas quam cumque vero possimus, mollitia earum.</p>
-                        <a class="btn btn-primary">Ver Libro</a>
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text">{{ book.briefDescription }}</p>
+                        <a class="btn btn-outline-danger btn-block">Ver Libro</a>
                     </div>
                 </div>
             </div>
