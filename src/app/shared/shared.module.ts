@@ -9,6 +9,7 @@ import { __ROUTES } from '../app.routes';
 
 
 
+
 @NgModule({
   declarations: [
     FooterComponent,
@@ -16,7 +17,7 @@ import { __ROUTES } from '../app.routes';
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot(__ROUTES, {useHash:true}),
+    RouterModule.forRoot(__ROUTES, {useHash:true})    
   ],
   exports: [
     FooterComponent,

@@ -51,7 +51,7 @@ export class CardsQuickviewComponent implements OnInit {
         this.booksCards = data
         if(this.booksCards.length > 0){
           this.itemBook = this.booksCards[this.puntero]
-          console.log(this.itemBook.autor[0]._id)
+          //console.log(this.itemBook.autor[0]._id)
           this.loading = true
         }
       })

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; 
 
 import { BooksComponent } from './books/books.component'
 import { AutorsComponent } from './autors/autors.component'
@@ -9,7 +10,6 @@ import { SingupComponent } from './singup/singup.component'
 import { NextsComponent } from './nexts/nexts.component'
 import { HomeModule } from './home/home.module';
 import { PrivateModule } from '../private/private.module';
-import { RouterModule } from '@angular/router';
 import { BookComponent } from './book/book.component';
 import { AutorComponent } from './autor/autor.component';
 import { FilterComponent } from '../../shared/filter/filter.component'
@@ -30,7 +30,8 @@ import { FilterComponent } from '../../shared/filter/filter.component'
   imports: [
     CommonModule,
     HomeModule,
-    PrivateModule
+    PrivateModule,
+    FormsModule
   ],
   exports: [
     BooksComponent,

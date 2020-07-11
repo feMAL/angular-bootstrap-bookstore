@@ -42,29 +42,29 @@
             </div>
             <div *ngIf="switchCheck" class="form-inline mt-3">
                 <label>ISBN del Libro</label>
-                <input type="text" class="form-control form-control-sm" placeholder="ISBN" #isbn>
+                <input type="number" class="form-control form-control-sm" name="isbn" placeholder="ISBN" [(ngModel)]="filterSelected.isbn" #isbn>
             </div>
             <div *ngIf="!switchCheck" class="form-inline mt-3">
                 <label>Titulo de Libro</label>
-                <input type="text" class="form-control form-control-sm float-right" placeholder="Titulo" #titleBook> 
+                <input type="text" class="form-control form-control-sm float-right" name="titleBook" [(ngModel)]="filterSelected.title" placeholder="Titulo" #titleBook> 
             </div>
             <div class="form-inline mt-1">
                 <label >Categoría</label>
-                <select class="custom-select custom-select-sm float-right" #categorySel>
+                <select class="custom-select custom-select-sm float-right" name="categorySelected" [(ngModel)]="filterSelected.category" #categorySelected>
                     <option value="0" disabled>Elije una categoría</option>
-                    <option *ngFor="let category of allCategories" value="category._id">{{category.name}}</option>
+                    <option *ngFor="let category of allCategories" [value]="category._id">{{category.name}}</option>
                 </select>
             </div>
             <div class="form-inline mt-1">
                 <label>Editorial</label>
-                <select class="custom-select custom-select-sm" #editorialSel>
+                <select class="custom-select custom-select-sm" name="editorialSelected" [(ngModel)]="filterSelected.editorial" #editorialSel>
                     <option value="0" disabled>Elije una editorial</option>
-                    <option *ngFor="let editorial of allEditorials" value="editorial._id">{{editorial.name}}</option>
+                    <option *ngFor="let editorial of allEditorials" [value]="editorial._id">{{editorial.name}}</option>
                 </select>
             </div>
 
             <div class="form-row mt-3">
-                <span class="btn btn-outline-danger btn-block" (click)="getFilterOPT(categorySel.selectedOptions.value, editorialSel.selectedOptions)"> Filtrar Libros </span>
+                <span class="btn btn-outline-danger btn-block" (click)="getBookFilter()"> Filtrar Libros </span>
             </div>
           </form>
       </div>

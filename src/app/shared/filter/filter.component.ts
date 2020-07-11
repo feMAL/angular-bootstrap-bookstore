@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { CategoryService } from 'src/app/services/category.service';
 import { EditorialService } from 'src/app/services/editorial.service';
-import { NgForm } from '@angular/forms';
+
+import { Book } from 'src/app/models/book.model';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class FilterComponent implements OnInit {
 
   @Input() filtroPara    : string  = "autor"
-  @Input() formulario    : NgForm
+  @Output() dataFilter   = new EventEmitter()
   
   public title           : string
   
@@ -26,14 +27,21 @@ export class FilterComponent implements OnInit {
   
   public messageType     : string
   public message         : string
-  
 
+  public filterSelected = {
+    isbn      : null,
+    title     : '',
+    editorial : 0,
+    category  : 0
+  }
+  
   constructor(
     private _categoryService : CategoryService,
     private _serviceEditorial: EditorialService 
   ) { }
 
   ngOnInit() {
+  
     if(this.filtroPara === 'autor'){
       this.title = 'Filtrar Autores'
     }else{
@@ -43,17 +51,18 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  getFilterOPT(categorySel, editorialSel){
-    console.log(this.formulario)
-    console.log(categorySel)
-    console.log(editorialSel)
+  getBookFilter(){
+
+    this.dataFilter.emit(this.filterSelected)
 
   }
 
   switchValue(value){
     this.switchCheck = value
     if(this.switchCheck){
-      
+      this.filterSelected.title = ''
+    }else{
+      this.filterSelected.isbn = null
     }
   }
 

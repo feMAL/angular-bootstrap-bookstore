@@ -1,7 +1,8 @@
 <div class="container">
     <div class="d-inline">
         <div class="col">
-            <app-filter [filtroPara]="'libro'"></app-filter>
+            <!---->
+            <app-filter [filtroPara]="'libro'" (dataFilter)="showFilterSelected($event)" ></app-filter>
         </div>
         <div *ngIf="message" [ngClass]="messageType" class="alert">
             <span>{{message}}</span>
