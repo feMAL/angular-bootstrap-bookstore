@@ -1,4 +1,6 @@
 export class Book {
+
+    public _id: string
     
     constructor(
         public title: String,

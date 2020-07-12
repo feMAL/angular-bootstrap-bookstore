@@ -1,1 +1,32 @@
-<p>add works!</p>
+<form class="crearForm mt-3">
+    <div *ngIf="message" [ngClass]="messageType" class="alert">
+        <span>{{message}}</span>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>Editorial</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="editorialNew.name" class="form-control" placeholder="Nombre de la Editorial" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Descripción</label>
+            <textarea type="text" name="description" #alias="ngModel" [(ngModel)]="editorialNew.description" class="form-control" placeholder="Descripción de la Editorial" rows="2" required> </textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label>Página de la Editorial</label>
+            <input type="text" name="url" #url="ngModel" [(ngModel)]="editorialNew.url" class="form-control" placeholder="Url de la Editorial" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label> Contacto de Editorial</label>
+            <input type="text" name="contacto" #contacto="ngModel" [(ngModel)]="editorialNew.contacto" class="form-control" placeholder="Contacto de la Editorial" required>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label> Logo de Ediorial </label>
+            <input type="text" name="logo" #logo="ngModel" [(ngModel)]="editorialNew.logo" class="form-control" placeholder="Imagen Autor URL" required>
+        </div>
+    </div>
+    <button class="btn btn-secondary btn-block" (click)="createNewEditorial()">Cargar Autor</button>
+</form>

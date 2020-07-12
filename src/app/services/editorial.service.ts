@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { API_CONFIG } from './config/conf'
+import { UserService } from './user.service'
+import { Editorial } from 'src/app/models/editorial.model'
+
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +15,18 @@ export class EditorialService {
     public urlBase = API_CONFIG._api
 
     constructor(
-        private _http:HttpClient
+        private _http:HttpClient,
+        private _userService: UserService
     ){}
+
+    createEditorial(editorial: Editorial){
+        let url = this.urlBase + API_CONFIG.uri.editorial
+
+        let headers = new HttpHeaders().set('authorization',this._userService.getToken())
+        
+        return this._http.post(url,editorial,{headers})
+            .pipe( map( (data:any) => data.newEditorial ) )
+    }
 
     getAllEditorials(){
         let url = this.urlBase + API_CONFIG.uri.editorial
@@ -22,7 +35,7 @@ export class EditorialService {
             .pipe( map( (data:any) => data.editorials ) )
     }
 
-    getEditorialByName(editorial){
+    getEditorialByName(editorial:string){
         let url = this.urlBase + API_CONFIG.uri.editorial
 
         let params = new HttpParams().set('name',editorial);

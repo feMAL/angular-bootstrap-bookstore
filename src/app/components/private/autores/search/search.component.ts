@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutorService } from 'src/app/services/autor.service'
+import { Autor } from 'src/app/models/autor.model';
 
 @Component({
   selector: 'app-autor-search',
@@ -8,7 +9,8 @@ import { AutorService } from 'src/app/services/autor.service'
 })
 export class SearchComponent implements OnInit {
 
-  public autorsFound: any[] = []
+  public autorsFound: Autor[] = []
+  public autorsFoundView: Autor[] = []
 
   constructor(
     private _autorService: AutorService
@@ -18,19 +20,24 @@ export class SearchComponent implements OnInit {
     this._autorService.getAllAutors()
       .subscribe((data:any)=>{
         this.autorsFound = data
-        console.log(this.autorsFound)
+        this.autorsFoundView = data
       },err=>{
         console.error(err.message)
       })    
   }
 
-  buscarLibro(search:string){
-    this._autorService.getAutorsByName(search)
-      .subscribe((data)=>{
-        console.log(data)
+  buscarAutor(search:string){
+    if(search){
+      this._autorService.getAutorsByName(search)
+      .subscribe((data: Autor[])=>{
+        this.autorsFoundView = data
+
       },err=>{
         console.error(err.message)
       })
+    }else{
+      this.autorsFoundView = this.autorsFound
+    }
   }
 
 }

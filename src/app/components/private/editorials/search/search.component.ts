@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Editorial } from 'src/app/models/editorial.model';
+import { EditorialService } from 'src/app/services/editorial.service';
+
 @Component({
   selector: 'app-editorial-search',
   templateUrl: './search.component.html',
@@ -7,9 +10,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  public editorialFound : Editorial[]
+  public editorialFoundView : Editorial[]
+
+  constructor(
+    private _editorialService: EditorialService
+  ) { }
 
   ngOnInit() {
+    this._editorialService.getAllEditorials()
+      .subscribe(
+        (data:Editorial[]) => {
+          this.editorialFound = data
+          this.editorialFoundView =data
+        },err=>{
+          console.log(err.message)
+        }
+      )
+  }
+
+  buscarEditorial(search:string){
+    if(search){
+      this._editorialService.getEditorialByName(search)
+      .subscribe((data:Editorial[])=>{
+        this.editorialFoundView = data
+      },err=>{
+        console.error(err.message)
+      })
+    }else {
+      this.editorialFoundView = this.editorialFound
+    }
   }
 
 }

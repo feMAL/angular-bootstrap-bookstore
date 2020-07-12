@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { BookService } from 'src/app/services/book.service'
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-book-search',
@@ -8,7 +10,8 @@ import { BookService } from 'src/app/services/book.service'
 })
 export class SearchComponent implements OnInit {
 
-  public booksFound: any[] = []
+  public booksFound     : Book[] = []
+  public booksFoundView : Book[] = []
 
   constructor(
     private _bookService: BookService
@@ -16,8 +19,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this._bookService.getAllBooks()
-      .subscribe((data:any)=>{
+      .subscribe( (data:Book[])=>{
         this.booksFound = data
+        this.booksFoundView = data
       },err=>{
         console.error(err.message)
       })
@@ -25,11 +29,17 @@ export class SearchComponent implements OnInit {
   }
 
   buscarLibro(search:string){
-    this._bookService.requestBooks(search).subscribe((data:any)=>{
-      this.booksFound = data
-    },err=>{
-      console.error(err.message)
-    })
+    if(search){
+      this._bookService.requestBooks(search)
+        .subscribe( (data:Book[])=>{
+          console.log(data)
+          this.booksFoundView = data
+        },err=>{
+          console.error(err.message)
+        })
+    }else{
+      this.booksFoundView = this.booksFound
+    }
   }
 
   removeBook(book){
