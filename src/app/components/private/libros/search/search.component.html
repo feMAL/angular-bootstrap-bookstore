@@ -12,15 +12,23 @@
                 <tr>
                     <th scope="col-3">Titulo</th>
                     <th scope="col">Autor</th>
-                    <th scope="col" class="d-none d-sm-none d-md-block">Categorias</th>
+                    <th scope="col" class="d-none d-sm-none d-md-block">Categorías</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="table-danger" *ngFor="let book of booksFoundview">
+                <tr class="table-danger" *ngFor="let book of booksFoundView">
                     <td>{{ book.title }}</td>
-                    <td>{{ book.autor.name }}</td>
-                    <td class="d-none d-sm-none d-md-block" ></td>
+                    <td>
+                        <span *ngFor="let autor of book.autor">
+                            <small> {{ autor.name }} </small>
+                        </span>
+                    </td>
+                    <td class="d-none d-sm-none d-md-block" >
+                        <span *ngFor="let category of book.category">
+                            <small> {{ category.name }} </small>
+                        </span>
+                    </td>
                     <td>
                         <div class="text-right">
                             <span class="m-1">

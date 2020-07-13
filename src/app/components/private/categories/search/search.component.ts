@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
   buscarCategory(search:string){
     if(search){
       this._categoryService.getCategoryByName(search)
-        .subscribe( (data: Category[])=>{
+        .subscribe( (data: Category[] )=>{
           this.categoriesFoundView = data
         },err=>{
           console.error(err.message)
@@ -38,6 +38,10 @@ export class SearchComponent implements OnInit {
     }else{
       this.categoriesFoundView = this.categoriesFound
     }
+  }
+
+  removeCategory(category){
+
   }
 
 

@@ -7,12 +7,16 @@ import { AutorService } from 'src/app/services/autor.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { EditorialService } from 'src/app/services/editorial.service';
 import { TagsService } from 'src/app/services/tags.service';
+import { Editorial } from 'src/app/models/editorial.model';
+import { Tag } from 'src/app/models/tag.model';
+import { Category } from 'src/app/models/category.model';
+import { Autor } from 'src/app/models/autor.model';
 
 
 @Component({
   selector: 'app-book-edit',
   templateUrl: '../add/add.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['../add/add.component.css']
 })
 export class EditComponent implements OnInit {
 
@@ -21,20 +25,20 @@ export class EditComponent implements OnInit {
   
   public showAutorsFound
   public showAutors: Boolean = false
-  public listAutors: any[] = []
+  public listAutors: Autor[] = []
 
   public showCategoriesFound
   public showCategories: Boolean = false
-  public listCategories: any[] = []
+  public listCategories: Category[] = []
   
   
   public showEditorialFound
   public showEditorial: Boolean = false
-  public listEditorial: any[] = []
+  public listEditorial: Editorial[] = []
 
   public showTagsFound
   public showTags: Boolean = false
-  public listTags: any[] = []
+  public listTags: Tag[] = []
 
   // ATRIBUTOS DEL PROCESO POST ALTA
 
@@ -54,7 +58,7 @@ export class EditComponent implements OnInit {
     
   ) { 
     
-    this.book= new Book('',[{}],[{}],'',0,1,12,2000,[{}],'','','',[{}],[{}],'','');
+    this.book= new Book();
 
     this._activeRoute.params.subscribe(params=>{
 
@@ -86,7 +90,7 @@ export class EditComponent implements OnInit {
       this.book.tags = this.listTags
 
       this._bookService.updateBook(this.book)
-        .subscribe(data => {
+        .subscribe( (data: Book) => {
           this.messageType = 'alert-success'
           this.message = `El Libro ${data.title} ha sido actualizado`
         },err => {
@@ -96,7 +100,7 @@ export class EditComponent implements OnInit {
     }
   }
   
-  addAutorToBook(autor){
+  addAutorToBook(autor:Autor){
     if(autor){
       if(this.listAutors.indexOf(autor)<0){
         this.listAutors.push(autor);
@@ -106,7 +110,7 @@ export class EditComponent implements OnInit {
     }
   }
   
-  removeAutorToBook(autor){
+  removeAutorToBook(autor:Autor){
     this.listAutors.splice(this.listAutors.indexOf(autor),1);
   }
 
@@ -114,11 +118,12 @@ export class EditComponent implements OnInit {
     let termino:string = autor
     if(termino.length >= 4){
       this.showAutors = true
-      this._serviceAutor.getAutorsByName(termino).subscribe((data:any)=>{
-        this.showAutorsFound = data
-      },err=>{
-        console.warn(err.message)
-      })
+      this._serviceAutor.getAutorsByName(termino)
+        .subscribe((data:Autor[])=>{
+          this.showAutorsFound = data
+        },err=>{
+          console.warn(err.message)
+        })
     }else{
       this.showAutors=false
     }
@@ -127,7 +132,7 @@ export class EditComponent implements OnInit {
   /*      EDITORIAL 
     Editorial Funcionales */
 
-  addEditorialToBook(editorial){
+  addEditorialToBook(editorial: Editorial){
     if(editorial){
       if(this.listEditorial.indexOf(editorial) < 0){
         this.listEditorial.push(editorial);
@@ -137,19 +142,20 @@ export class EditComponent implements OnInit {
     }
   }
 
-  removeEditorialToBook(editorial){
+  removeEditorialToBook(editorial: Editorial){
     this.listEditorial.splice(this.listEditorial.indexOf(editorial),1);
   }
 
   getEditorial(editorial){
     let termino:string = editorial
     if(termino.length >= 3){
-      this._serviceEditorial.getEditorialByName(termino).subscribe((data:any)=>{
-        this.showEditorial = true
-        this.showEditorialFound = data
-      },err=>{
-        console.warn(err.message)
-      })
+      this._serviceEditorial.getEditorialByName(termino)
+        .subscribe((data:Editorial[])=>{
+          this.showEditorial = true
+          this.showEditorialFound = data
+        },err=>{
+          console.warn(err.message)
+        })
     }else{
       this.showEditorial=false
     }
@@ -158,11 +164,11 @@ export class EditComponent implements OnInit {
   /*      CATEGORIES 
     Categories Funcionales  */
 
-  removeCategorieToBook(categories){
+  removeCategorieToBook(categories: Category){
     this.listCategories.splice(this.listCategories.indexOf(categories),1);
   }
 
-  addCategorieToBook(categorie){
+  addCategorieToBook(categorie: Category){
     if(categorie){
       if(this.listCategories.indexOf(categorie) < 0){
         this.listCategories.push(categorie);
@@ -175,12 +181,13 @@ export class EditComponent implements OnInit {
   getCategories(categorie){
     let termino:string = categorie
     if(termino.length >= 3){
-      this._serviceCategory.getCategoryByName(termino).subscribe((data:any)=>{
-        this.showCategories = true
-        this.showCategoriesFound = data
-      },err=>{
-        console.warn(err.message)
-      })
+      this._serviceCategory.getCategoryByName(termino)
+        .subscribe((data:Category[])=>{
+          this.showCategories = true
+          this.showCategoriesFound = data
+        },err=>{
+          console.warn(err.message)
+        })
     }else{
       this.showCategories=false
     }
@@ -189,11 +196,11 @@ export class EditComponent implements OnInit {
   /*      TAGS 
     TAGS Funcionales  */
     
-    removeTagsToBook(tag){
+    removeTagsToBook(tag :Tag){
       this.listTags.splice(this.listTags.indexOf(tag),1);
     }
   
-    addTagsToBook(tag){
+    addTagsToBook(tag: Tag){
       if(tag){
         if(this.listTags.indexOf(tag) < 0){
           this.listTags.push(tag);
@@ -206,15 +213,17 @@ export class EditComponent implements OnInit {
     getTags(tag){
       let termino:string = tag
       if(termino.length >= 3){
-        this._serviceTags.getTagsByName(termino).subscribe((data:any)=>{
-          this.showTags = true
-          this.showTagsFound = data
-        },err=>{
-          console.warn(err.message)
-        })
+        this._serviceTags.getTagsByName(termino)
+          .subscribe((data:Tag[])=>{
+            this.showTags = true
+            this.showTagsFound = data
+          },err=>{
+            console.warn(err.message)
+          })
       }else{
         this.showTags=false
       }
     }
+
 
 }

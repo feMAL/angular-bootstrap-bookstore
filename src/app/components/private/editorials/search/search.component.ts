@@ -42,4 +42,8 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  removeEditorial(editorial:Editorial){
+    console.log('Desea eliminar '+ editorial)
+  }
+
 }

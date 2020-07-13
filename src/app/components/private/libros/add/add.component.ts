@@ -7,6 +7,10 @@ import { CategoryService } from 'src/app/services/category.service';
 import { EditorialService } from 'src/app/services/editorial.service';
 import { TagsService } from 'src/app/services/tags.service';
 import { BookService } from 'src/app/services/book.service';
+import { Autor } from 'src/app/models/autor.model';
+import { Category } from 'src/app/models/category.model';
+import { Editorial } from 'src/app/models/editorial.model';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-book-add',
@@ -20,20 +24,20 @@ export class AddComponent implements OnInit {
   
   public showAutorsFound
   public showAutors: Boolean = false
-  public listAutors: any[] = []
+  public listAutors: Autor[] = []
 
   public showCategoriesFound
   public showCategories: Boolean = false
-  public listCategories: any[] = []
+  public listCategories: Category[] = []
   
   
   public showEditorialFound
   public showEditorial: Boolean = false
-  public listEditorial: any[] = []
+  public listEditorial: Editorial[] = []
 
   public showTagsFound
   public showTags: Boolean = false
-  public listTags: any[] = []
+  public listTags: Tag[] = []
 
   public is_updated:Boolean = false
 
@@ -49,7 +53,7 @@ export class AddComponent implements OnInit {
     private _serviceEditorial: EditorialService,
     private _serviceTags: TagsService
   ) { 
-    this.book= new Book('',[{}],[{}],'',0,1,12,2000,[{}],'','','',[{}],[],'','');
+    this.book= new Book();
   }
 
   ngOnInit() {}
@@ -67,11 +71,11 @@ export class AddComponent implements OnInit {
       this.book.tags = this.listTags
 
       this._serviceBook.saveNewBook(this.book)
-        .subscribe(data => {
+        .subscribe( (data: Book)=> {
           this.messageType = 'alert-success'
           this.message = `El Libro "${data.title}" se ha creado`
 
-          this.book= new Book('',[],[],'',0,1,12,2000,[],'','','',[],[],'','');
+          this.book= new Book();
           this.listAutors = []
           this.listCategories = []
           this.listEditorial = []
@@ -86,7 +90,7 @@ export class AddComponent implements OnInit {
   /*      AUTORS 
     AUTORS Funcionales  */
 
-  addAutorToBook(autor){
+  addAutorToBook(autor:Autor){
     if(autor){
       if(this.listAutors.indexOf(autor)<0){
         this.listAutors.push(autor);
@@ -96,7 +100,7 @@ export class AddComponent implements OnInit {
     }
   }
   
-  removeAutorToBook(autor){
+  removeAutorToBook(autor:Autor){
     this.listAutors.splice(this.listAutors.indexOf(autor),1);
   }
 
@@ -104,9 +108,10 @@ export class AddComponent implements OnInit {
     let termino:string = autor
     if(termino.length >= 4){
       this.showAutors = true
-      this._serviceAutor.getAutorsByName(termino).subscribe((data:any)=>{
-        this.showAutorsFound = data
-      },err=>{
+      this._serviceAutor.getAutorsByName(termino)
+        .subscribe((data:Autor[])=>{
+          this.showAutorsFound = data
+        },err=>{
         console.warn(err.message)
       })
     }else{
@@ -117,7 +122,7 @@ export class AddComponent implements OnInit {
   /*      EDITORIAL 
     Editorial Funcionales */
 
-  addEditorialToBook(editorial){
+  addEditorialToBook(editorial: Editorial){
     if(editorial){
       if(this.listEditorial.indexOf(editorial) < 0){
         this.listEditorial.push(editorial);
@@ -127,19 +132,20 @@ export class AddComponent implements OnInit {
     }
   }
 
-  removeEditorialToBook(editorial){
+  removeEditorialToBook(editorial: Editorial){
     this.listEditorial.splice(this.listEditorial.indexOf(editorial),1);
   }
 
   getEditorial(editorial){
     let termino:string = editorial
     if(termino.length >= 3){
-      this._serviceEditorial.getEditorialByName(termino).subscribe((data:any)=>{
-        this.showEditorial = true
-        this.showEditorialFound = data
-      },err=>{
-        console.warn(err.message)
-      })
+      this._serviceEditorial.getEditorialByName(termino)
+        .subscribe((data:Editorial[])=>{
+          this.showEditorial = true
+          this.showEditorialFound = data
+        },err=>{
+          console.warn(err.message)
+        })
     }else{
       this.showEditorial=false
     }
@@ -148,11 +154,11 @@ export class AddComponent implements OnInit {
   /*      CATEGORIES 
     Categories Funcionales  */
 
-  removeCategorieToBook(categories){
+  removeCategorieToBook(categories: Category){
     this.listCategories.splice(this.listCategories.indexOf(categories),1);
   }
 
-  addCategorieToBook(categorie){
+  addCategorieToBook(categorie: Category){
     if(categorie){
       if(this.listCategories.indexOf(categorie) < 0){
         this.listCategories.push(categorie);
@@ -165,12 +171,13 @@ export class AddComponent implements OnInit {
   getCategories(categorie){
     let termino:string = categorie
     if(termino.length >= 3){
-      this._serviceCategory.getCategoryByName(termino).subscribe((data:any)=>{
-        this.showCategories = true
-        this.showCategoriesFound = data
-      },err=>{
-        console.warn(err.message)
-      })
+      this._serviceCategory.getCategoryByName(termino)
+        .subscribe( ( data:Category[] )=>{
+          this.showCategories = true
+          this.showCategoriesFound = data
+        },err=>{
+          console.warn(err.message)
+        })
     }else{
       this.showCategories=false
     }
@@ -179,11 +186,11 @@ export class AddComponent implements OnInit {
   /*      TAGS 
     TAGS Funcionales  */
     
-    removeTagsToBook(tag){
+    removeTagsToBook(tag:Tag){
       this.listTags.splice(this.listTags.indexOf(tag),1);
     }
   
-    addTagsToBook(tag){
+    addTagsToBook(tag: Tag){
       if(tag){
         if(this.listTags.indexOf(tag) < 0){
           this.listTags.push(tag);
@@ -196,7 +203,7 @@ export class AddComponent implements OnInit {
     getTags(tag){
       let termino:string = tag
       if(termino.length >= 3){
-        this._serviceTags.getTagsByName(termino).subscribe((data:any)=>{
+        this._serviceTags.getTagsByName(termino).subscribe((data:Tag[])=>{
           this.showTags = true
           this.showTagsFound = data
         },err=>{

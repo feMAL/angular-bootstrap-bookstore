@@ -24,8 +24,17 @@ export class EditorialService {
 
         let headers = new HttpHeaders().set('authorization',this._userService.getToken())
         
-        return this._http.post(url,editorial,{headers})
+        return this._http.post(url,editorial, { headers } )
             .pipe( map( (data:any) => data.newEditorial ) )
+    }
+
+    updateEditorial(editorial:Editorial){
+        let url = `${this.urlBase}${API_CONFIG.uri.editorial}/${editorial._id}`
+
+        let headers = new HttpHeaders().set('authorization',this._userService.getToken())
+        
+        return this._http.put(url, editorial, { headers } )
+            .pipe( map( (data:any) => data.editorialUpdated ) )
     }
 
     getAllEditorials(){
@@ -45,5 +54,14 @@ export class EditorialService {
                 return data.editorials
             } ) )
     }
+
+    getEditorialById(editorial: string){
+        let url = `${this.urlBase}${API_CONFIG.uri.editorial}/${editorial}`
+
+        return this._http.get(url)
+            .pipe( map( (data:any) => data.editorial ) )
+    }
+
+
 
 }

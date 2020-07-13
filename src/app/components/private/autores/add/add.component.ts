@@ -12,26 +12,25 @@ import { UserService } from 'src/app/services/user.service';
 export class AddComponent implements OnInit {
 
   public autor: Autor
+
   public message: string
   public messageType: string
 
   constructor(
-    private _autorService: AutorService,
-    private _userService: UserService
+    private _autorService: AutorService
   ) {
-    this.autor = new Autor('','','','',0,0,'')
+    this.autor = new Autor()
   }
 
   ngOnInit() { }
 
   createNewAutor() {
-    this._autorService.createNewAutor(this.autor,this._userService.getToken())
+    this._autorService.createNewAutor(this.autor)
       .subscribe( (data:any) => {
-        console.log(data)
         this.messageType = 'alert-success'
         this.message = `El Autor/a ${data.newAutor.name} se ha creado`
 
-        this.autor = new Autor('','','','',0,0,'')
+        this.autor = new Autor()
       },err =>{
         this.messageType = 'alert-danger'
         this.message = err.message

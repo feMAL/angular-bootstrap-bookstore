@@ -6,7 +6,7 @@ import { SearchComponent } from './search/search.component';
 
 export const __EDITORIAL: Routes = [
     { path: 'add', component: AddComponent},
-    { path: 'edit', component: EditComponent},
+    { path: 'edit/:id', component: EditComponent},
     { path: 'search', component: SearchComponent},
     { path: '**', pathMatch:'full', redirectTo:'add'}
 ]

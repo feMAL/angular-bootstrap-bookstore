@@ -31,7 +31,6 @@ export class SearchComponent implements OnInit {
       this._autorService.getAutorsByName(search)
       .subscribe((data: Autor[])=>{
         this.autorsFoundView = data
-
       },err=>{
         console.error(err.message)
       })

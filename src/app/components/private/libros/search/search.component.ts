@@ -25,14 +25,12 @@ export class SearchComponent implements OnInit {
       },err=>{
         console.error(err.message)
       })
-    
   }
 
   buscarLibro(search:string){
     if(search){
-      this._bookService.requestBooks(search)
+      this._bookService.searchBooksByName(search)
         .subscribe( (data:Book[])=>{
-          console.log(data)
           this.booksFoundView = data
         },err=>{
           console.error(err.message)

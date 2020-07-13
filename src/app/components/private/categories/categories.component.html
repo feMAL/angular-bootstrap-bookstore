@@ -1,25 +1,12 @@
 <div class="manager">
     <div class="row controls">
         <div class="btn-group" role="group" aria-label="ControlBooks">
-            <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='crear'">Crear</button>
-            <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='buscar'">Buscar</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" [routerLink]="['./add']">Crear</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" [routerLink]="['./search']">Buscar</button>
           </div>
     </div>
-    <div [ngSwitch]="operation" class="d-block workspace">
-        
-        <div *ngSwitchCase="'crear'">
-          <app-categories-add></app-categories-add>
-        </div>
-        <div *ngSwitchCase="'editar'">
-          <app-categories-edit></app-categories-edit>
-        </div>
-        <div *ngSwitchCase="'buscar'">
-          <app-categories-search></app-categories-search>
-        </div>
-        <div *ngSwitchCase="'eliminar'">
-    
-        </div>
-        <div *ngSwitchDefault></div>
+    <div class="d-block workspace">
+        <router-outlet></router-outlet>
     </div>
 </div>
 

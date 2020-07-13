@@ -12,13 +12,14 @@ import { CategoryService } from 'src/app/services/category.service';
 export class AddComponent implements OnInit {
 
   public category: Category
+
   public messageType: string
   public message: string
 
   constructor(
     private _categoryService: CategoryService
   ) {
-    this.category = new Category('','')
+    this.category = new Category()
   }
 
   ngOnInit() {
@@ -26,13 +27,13 @@ export class AddComponent implements OnInit {
 
   createNewCategory(){
     this._categoryService.saveCategory(this.category)
-    .subscribe( (data:any) => {
-      if(data.newCategory._id){
+    .subscribe( (data:Category) => {
+      if(data._id){
         this.messageType = 'alert-success'
-        this.message = `La categoria ${data.newCategory.name} ha sido creada`
+        this.message = `La categoria ${data.name} ha sido creada`
         
         /*Emmitir notificacion*/
-        this.category = new Category('','')
+        this.category = new Category()
       }
     },err=>{
       this.messageType = 'alert-danger'

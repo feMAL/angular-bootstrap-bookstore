@@ -1,32 +1,11 @@
 <div class="manager">
     <div class="row controls">
         <div class="btn-group" role="group" aria-label="ControlBooks">
-            <button type="button" class="btn btn-outline-dark btn-sm" [routerLink]="['./add']" (click)="operation='crear'">Crear</button>
-            <button type="button" class="btn btn-outline-dark btn-sm" [routerLink]="['./search']" (click)="operation='buscar'">Buscar</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" [routerLink]="['./add']" >Crear</button>
+            <button type="button" class="btn btn-outline-dark btn-sm" [routerLink]="['./search']" >Buscar</button>
           </div>
     </div>
-    <div [ngSwitch]="operation" class="d-block workspace">
+    <div class="d-block workspace">
         <router-outlet></router-outlet>
     </div>
 </div>
-
-<!--
-          <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='editar'">Editar</button>
-          <button type="button" class="btn btn-outline-dark btn-sm" (click)="operation='eliminar'">Eliminar</button>
-
-------------------------
-
-          <div *ngSwitchCase="'crear'">
-          <app-autor-add></app-autor-add>
-        </div>
-        <div *ngSwitchCase="'editar'">
-          <app-autor-edit></app-autor-edit>
-        </div>
-        <div *ngSwitchCase="'buscar'">
-          <app-autor-search></app-autor-search>
-        </div>
-        <div *ngSwitchCase="'eliminar'">
-          
-        </div>
-        <div *ngSwitchDefault></div>
--->

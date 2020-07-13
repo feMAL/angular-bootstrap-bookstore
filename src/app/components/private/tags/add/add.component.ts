@@ -27,10 +27,10 @@ export class AddComponent implements OnInit {
       this._tagService.createTag(this.tagNew)
         .subscribe( (data:Tag) => {
           this.messageType= 'alert-success'
-          this.message = `Editorial ${data.tag} Creada`
+          this.message = `Tag ${data.tag} Creado`
         },err=>{
           this.messageType= 'alert-danger'
-          this.message = err.message        
+          this.message = err.message
         })
     }
   }

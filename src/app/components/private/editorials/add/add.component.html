@@ -24,9 +24,10 @@
     </div>
     <div class="form-row">
         <div class="col-md-6 mb-3">
-            <label> Logo de Ediorial </label>
+            <label> Logo de Editorial </label>
             <input type="text" name="logo" #logo="ngModel" [(ngModel)]="editorialNew.logo" class="form-control" placeholder="Imagen Autor URL" required>
         </div>
     </div>
-    <button class="btn btn-secondary btn-block" (click)="createNewEditorial()">Cargar Autor</button>
+    <button class="btn btn-secondary btn-block" *ngIf="editorialNew._id" (click)="updateEditorial()">Actualizar Editorial</button>
+    <button class="btn btn-secondary btn-block" *ngIf="!editorialNew._id" (click)="createNewEditorial()">Cargar Editorial</button>
 </form>

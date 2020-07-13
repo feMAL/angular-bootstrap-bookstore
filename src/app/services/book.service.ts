@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { UserService } from '../services/user.service'
 
 import { API_CONFIG } from './config/conf'
@@ -37,10 +37,12 @@ export class BookService {
     return this._http.put(url,book,{headers}).pipe( map ( (updatedBook:any) => updatedBook.BookUpdated ) )
   }
 
-  requestBooks(filters){
+  searchBooksByName(filters:string){
     let target = `${this.url}${API_CONFIG.uri.book}/`
 
-    return this._http.get(target)
+    let params = new HttpParams().set('title',filters)
+
+    return this._http.get(target,{params}).pipe( map( ( data:any ) =>  data.book ) )
   }
 
   getBooksOfAutors(autorID){

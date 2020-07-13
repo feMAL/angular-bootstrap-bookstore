@@ -12,5 +12,6 @@
             <input type="text" name="description" #description="ngModel" [(ngModel)]="category.description" class="form-control" placeholder="Descripción de Categoría" required>
         </div>
     </div>
-    <button class="btn btn-secondary btn-block" (click)="createNewCategory()">Crear Categoría</button>
+    <button class="btn btn-secondary btn-block" *ngIf="category._id" (click)="updateCategory()">Actualizar Categoría</button>
+    <button class="btn btn-secondary btn-block" *ngIf="!category._id" (click)="createNewCategory()">Crear Categoría</button>
 </form>

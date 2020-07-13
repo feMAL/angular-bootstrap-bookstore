@@ -22,9 +22,15 @@ export class CategoryService {
 
       let params = new HttpParams().set('name',category)
   
-      return this._http.get(url,{params}).pipe( map( (data:any)=>{
-        return data.categorys
-      } ) )  
+      return this._http.get(url,{params}).pipe( map( (data:any)=> data.categorys ) )  
+    }
+  }
+
+  getCategoryById(categoryId:string){
+    if (categoryId) {
+      let url = `${API_CONFIG._api}${API_CONFIG.uri.category}/${categoryId}`
+  
+      return this._http.get(url).pipe( map( (data:any)=> data.category ) )  
     }
   }
 
@@ -40,10 +46,17 @@ export class CategoryService {
 
       let headers = new HttpHeaders().set('authorization',this._userService.getToken())
 
-      return this._http.post(url,category,{headers})
+      return this._http.post(url,category,{headers}).pipe( map ( (data:any) => data.newCategory ) ) 
     }else{
       console.log('no ha enviado nombre de categoria')
     }
   }
+  
+  updateCategory(category:Category){
+    let url = `${API_CONFIG._api}${API_CONFIG.uri.category}/${category._id}`
 
+    let headers = new HttpHeaders().set('authorization',this._userService.getToken())
+
+    return this._http.put(url,category,{headers}).pipe( map ( (data:any) => data ) ) 
+  }
 }
