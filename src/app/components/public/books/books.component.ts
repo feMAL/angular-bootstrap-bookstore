@@ -55,49 +55,64 @@ export class BooksComponent implements OnInit {
     }else if(filter.title){   // Valido si el filtro contiene Tituo del libro
       let expresion = new RegExp(filter.title, 'i')
       //Filtro mi array de vista en base al titulo solicitado
-      this.booksArrayToShow = this.booksArray.filter(
+      this.booksArrayToShow = this.booksArrayToShow.filter(
         ( book:Book ) => book.title.match(expresion)
       )
       if(filter.editorial){ // Valido si el filtro CONTIENE editorial ADEMÁS del titulo
+        let auxBookWithEditorial = []
         this.booksArrayToShow.filter( 
           (books:Book)=>{
-            let auxBookWithEditorial = []
             books.editorial.forEach(
-              (element:Editorial)=> element._id == filter.editorial ? auxBookWithEditorial.push(element) : false
+              (element:Editorial)=> element._id == filter.editorial ? auxBookWithEditorial.push(books) : false
             )
             this.booksArrayToShow = auxBookWithEditorial
-            console.log(this.booksArrayToShow)
-
-          } 
+          }
         )
         if(filter.category){ // Valido si el filtro CONTIENE categoria, ADEMÁS de editorial y ADEMÁS del titulo
+          let auxBookWithCategory =  []
           this.booksArrayToShow.filter(
             (book:Book) => {
-              let auxBookWithCategory =  []
               book.category.forEach(
-                (categoriesBook:Category) =>  categoriesBook._id == filter.category ? auxBookWithCategory.push(categoriesBook) : false ) 
+                (categoriesBook:Category) =>  categoriesBook._id == filter.category ? auxBookWithCategory.push(book) : false 
+              ) 
               this.booksArrayToShow = auxBookWithCategory
-              
             }
           )
         }
-      }else if(filter.category){
-        console.log( 'Buscar por Titulo y categoria' )
-        console.log(this.booksArrayToShow)
-        this.booksArrayToShow.filter(
-          (book:Book) => {
-            let auxBookWithCategory =  []
-            book.category.forEach(
-              (categoriesBook:Category) =>  categoriesBook._id == filter.category ? auxBookWithCategory.push(categoriesBook) : false ) 
-            this.booksArrayToShow = auxBookWithCategory            
-          }
-        )
+      }else if(filter.category){ //busca por titulo y por Categoria pero no busca editorial
+        let auxBookWithCategory =  []
+          this.booksArrayToShow.filter(
+            (book:Book) => {
+              book.category.forEach(
+                (categoriesBook:Category) =>  categoriesBook._id == filter.category ? auxBookWithCategory.push(book) : false 
+              ) 
+              this.booksArrayToShow = auxBookWithCategory   
+            }
+          )
       }
     }else{
-      console.log( 'Buscar por editorial o categoria' )
+      if(filter.editorial){ // Filtrar por Editorial seleccionada
+        let auxBookWithEditorial = []
+        this.booksArrayToShow.filter( 
+          (books:Book)=>{
+            books.editorial.forEach(
+              (element:Editorial)=> element._id == filter.editorial ? auxBookWithEditorial.push(books) : false
+            )
+            this.booksArrayToShow = auxBookWithEditorial
+          }
+        )
+      }else if(filter.category){ // Filtrar por Categoria seleccionada
+        let auxBookWithCategory =  []
+          this.booksArrayToShow.filter(
+            (book:Book) => {
+              book.category.forEach(
+                (categoriesBook:Category) =>  categoriesBook._id == filter.category ? auxBookWithCategory.push(book) : false 
+              ) 
+              this.booksArrayToShow = auxBookWithCategory   
+            }
+          )
+      }
     }
-
-    console.log(this.booksArrayToShow)
   }
 
 }

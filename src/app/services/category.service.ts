@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators'
 import { API_CONFIG } from './config/conf';
 import { Category } from 'src/app/models/category.model'
 import { UserService } from './user.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +35,13 @@ export class CategoryService {
     }
   }
 
-  getAllCategories(){
+  getAllCategories() : Observable < Array < Category > > {
     let url = API_CONFIG._api + API_CONFIG.uri.category
 
     return this._http.get(url).pipe( map ( (data:any) => data.categorys ) )
   }
 
-  saveCategory(category:Category){
+  saveCategory(category:Category): Observable<Category>{
     if(category.name){
       let url = API_CONFIG._api + API_CONFIG.uri.category
 
@@ -52,11 +53,11 @@ export class CategoryService {
     }
   }
   
-  updateCategory(category:Category){
+  updateCategory(category:Category): Observable<Category> {
     let url = `${API_CONFIG._api}${API_CONFIG.uri.category}/${category._id}`
 
     let headers = new HttpHeaders().set('authorization',this._userService.getToken())
 
-    return this._http.put(url,category,{headers}).pipe( map ( (data:any) => data ) ) 
+    return this._http.put(url,category,{headers}).pipe( map ( (data:any) => data.categoryUpdated ) ) 
   }
 }

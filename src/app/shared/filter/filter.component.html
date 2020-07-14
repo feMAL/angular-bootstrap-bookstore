@@ -21,16 +21,19 @@
       <div class="container">
           <form *ngIf="filtroPara=='autor'" #formAutor>
             <div class="form-inline">
-                <label >Nombre</label><input type="text" class="form-control form-control-sm">
+                <label >Nombre</label>
+                <input type="text" class="form-control form-control-sm" name="name" [(ngModel)]="filterAutorSelected.name" placeholder="Nombre del Autor/a">
             </div>
             <div class="form-inline">
                 <label >País o Region</label>
+                <input type="text" name="nationality" [(ngModel)]="filterAutorSelected.nationality" class="form-control form-control-sm" placeholder="País del Autor">
+                <!--<label >País o Region</label>
                 <select class="custom-select custom-select-sm">
-                    <option value=""></option>
-                </select>
+                    <option value="0"></option>
+                </select>-->
             </div>
             <div class="form-row mt-3"> 
-                <span class="btn btn-outline-danger btn-block" > Filtrar Libros </span>
+                <span class="btn btn-outline-danger btn-block" (click)="getAutorFilter()"> Filtrar Autores </span>
             </div>
           </form>
         
@@ -51,14 +54,14 @@
             <div class="form-inline mt-1">
                 <label >Categoría</label>
                 <select class="custom-select custom-select-sm float-right" name="categorySelected" [(ngModel)]="filterSelected.category" #categorySelected>
-                    <option value="0" disabled>Elije una categoría</option>
+                    <option value="0">Elije una categoría</option>
                     <option *ngFor="let category of allCategories" [value]="category._id">{{category.name}}</option>
                 </select>
             </div>
             <div class="form-inline mt-1">
                 <label>Editorial</label>
                 <select class="custom-select custom-select-sm" name="editorialSelected" [(ngModel)]="filterSelected.editorial" #editorialSel>
-                    <option value="0" disabled>Elije una editorial</option>
+                    <option value="0">Elije una editorial</option>
                     <option *ngFor="let editorial of allEditorials" [value]="editorial._id">{{editorial.name}}</option>
                 </select>
             </div>

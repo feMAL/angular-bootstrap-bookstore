@@ -19,8 +19,10 @@ export class EditComponent implements OnInit {
     private _activeRouter    : ActivatedRoute,
     private _router          : Router,
     private _categoryService : CategoryService
-  ) { }
-
+  ) {
+    this.category = new Category()
+  }
+  
   ngOnInit() {
     this._activeRouter.params.subscribe((param => {
       let id: string = param['id']
@@ -42,8 +44,9 @@ export class EditComponent implements OnInit {
     if(this.category._id){
       if(this.category.name){
         this._categoryService.updateCategory(this.category)
-          .subscribe((data)=>{
-            console.log(data)
+          .subscribe((data:Category)=>{
+            this.messageType = 'alert-success'
+            this.message = `La categoría ${data.name} se ha actualizado`
           },err=>{
             this.messageType = 'alert-danger'
             this.message = err.message

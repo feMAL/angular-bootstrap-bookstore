@@ -38,5 +38,9 @@ export class SearchComponent implements OnInit {
       this.tagsFoundView = this.tagsFound
     }
   }
+ 
+  removeTag(tag:Tag){
+
+  }
 
 }

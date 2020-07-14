@@ -12,5 +12,6 @@
             <input type="text" name="description" #description="ngModel" [(ngModel)]="tagNew.description" class="form-control" placeholder="Descripción del Tag" required>
         </div>
     </div>
-    <button class="btn btn-secondary btn-block" (click)="createNewTag()">Crear Tag</button>
+    <button class="btn btn-secondary btn-block" *ngIf="tagNew._id" (click)="updateTag()">Actualizar Tag</button>
+    <button class="btn btn-secondary btn-block" *ngIf="!tagNew._id" (click)="createNewTag()">Crear Tag</button>
 </form>

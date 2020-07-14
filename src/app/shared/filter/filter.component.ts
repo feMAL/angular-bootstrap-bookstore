@@ -16,8 +16,9 @@ import { EditorialsModule } from 'src/app/components/private/editorials/editoria
 })
 export class FilterComponent implements OnInit {
 
-  @Input() filtroPara    : string  = "autor"
-  @Output() dataFilter   = new EventEmitter()
+  @Input() filtroPara       : string  = "autor"
+  @Output() dataFilter      = new EventEmitter()
+  @Output() dataFilterAutor = new EventEmitter()
   
   public title           : string
   
@@ -30,6 +31,12 @@ export class FilterComponent implements OnInit {
   
   public messageType     : string
   public message         : string
+
+  /* Objetos Filtro (de Autor y Libro)*/
+  public filterAutorSelected = {
+    name: '',
+    nationality: ''
+  }
 
   public filterSelected = {
     isbn      : null,
@@ -54,8 +61,18 @@ export class FilterComponent implements OnInit {
     }
   }
 
-  getBookFilter(){
+  getAutorFilter(){
+    this.dataFilterAutor.emit(this.filterAutorSelected)
+  }
 
+  getBookFilter(){
+    if(this.filterSelected.editorial == 0 ){
+      this.filterSelected.editorial = Number(this.filterSelected.editorial)
+    }
+    if(this.filterSelected.category == 0 ){
+      this.filterSelected.category = Number(this.filterSelected.category)
+    }
+    
     this.dataFilter.emit(this.filterSelected)
 
   }

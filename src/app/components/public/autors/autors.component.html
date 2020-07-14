@@ -1,13 +1,25 @@
 <div class="container">
     <div class="d-inline">
         <div class="col">
-            <app-filter [filtroPara]="'autor'"></app-filter>
+            <app-filter [filtroPara]="'autor'" (dataFilterAutor)="showFilterSelected($event)"></app-filter>
         </div>
         <div *ngIf="message" [ngClass]="messageType" class="alert">
             <span>{{message}}</span>
         </div>
         <div class="col">
-            <span class="text-right"> Prueba </span>
+            <div class="card-columns">
+                <div *ngFor="let autor of autorsArrayToShow" class="card shadow text-center">
+                    <img [src]="autor.image" class="img-thumbnail" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ autor.name }}</h5>
+                        <p class="card-text">{{ autor.alias }}</p>
+                        <a class="btn btn-outline-danger btn-block">Ver Autor</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
+<div>
+    <app-suscribe></app-suscribe>
 </div>
